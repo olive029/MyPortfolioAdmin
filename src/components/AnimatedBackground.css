@@ -1,0 +1,87 @@
+/* AnimatedBackground.css */
+.shape {
+  position: fixed;
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: -1;
+  filter: blur(2px);
+  transition: opacity 0.3s ease;
+}
+
+.shape-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #3b82f6, transparent);
+  top: 5%;
+  right: 5%;
+  animation: float 12s infinite ease-in-out;
+}
+
+.shape-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #60a5fa, transparent);
+  bottom: 10%;
+  left: 3%;
+  animation: float 15s infinite ease-in-out 1s;
+}
+
+.shape-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #93c5fd, transparent);
+  top: 40%;
+  right: 25%;
+  animation: float 10s infinite ease-in-out 2s;
+}
+
+.shape-4 {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #bfdbfe, transparent);
+  bottom: 30%;
+  right: 20%;
+  animation: float 14s infinite ease-in-out 3s;
+}
+
+.shape-5 {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, #dbeafe, transparent);
+  top: 20%;
+  left: 10%;
+  animation: float 16s infinite ease-in-out 4s;
+}
+.shape-6 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, #2563eb, transparent);
+  top: 8%;
+  left: 5%;
+  animation: float 13s infinite ease-in-out 0.5s;
+}
+
+/* Right Bottom Side Shape */
+.shape-7 {
+  width: 190px;
+  height: 190px;
+  background: radial-gradient(circle, #1d4ed8, transparent);
+  bottom: 8%;
+  right: 8%;
+  animation: float 11s infinite ease-in-out 1.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  25% {
+      transform: translateY(-20px) translateX(10px) rotate(5deg);
+  }
+  50% {
+      transform: translateY(10px) translateX(-15px) rotate(-5deg);
+  }
+  75% {
+      transform: translateY(-15px) translateX(-10px) rotate(3deg);
+  }
+}
