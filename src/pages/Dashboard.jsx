@@ -1,4 +1,4 @@
-// Dashboard.jsx - Complete functional version
+// Dashboard.jsx - Complete updated version with extended top nav
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
@@ -379,16 +379,9 @@ const Dashboard = () => {
       backgroundColor: '#f9fafb'
     },
 
-    // NEW: Main layout container with sidebar and content side by side
-    mainLayout: {
-      display: 'flex',
-      flex: 1,
-      marginTop: '0',
-    },
-
-    // UPDATED: Sidebar - now includes the logo at the top
+    // Sidebar
     sidebar: {
-      width: '280px',
+      width: '200px',
       backgroundColor: 'rgba(60, 126, 226, 0.2)',
       boxShadow: '4px 0 6px -1px rgba(0, 0, 0, 0.1), 2px 0 4px -1px rgba(0, 0, 0, 0.06)',
       borderRight: '1px solid rgba(60, 126, 226, 0.1)',
@@ -401,9 +394,9 @@ const Dashboard = () => {
       zIndex: 900
     },
 
-    // NEW: Sidebar header with logo
+    // Sidebar header with logo
     sidebarHeader: {
-      padding: '24px 20px',
+      padding: '12px 10px',
       borderBottom: '1px solid rgba(60, 126, 226, 0.1)',
       backgroundColor: 'rgba(60, 126, 226, 0.1)',
       minHeight: '80px',
@@ -412,9 +405,9 @@ const Dashboard = () => {
       justifyContent: 'center'
     },
 
-    // UPDATED: Logo with larger size
+    // Logo
     logoTitle: {
-      fontSize: '32px',
+      fontSize: '26px',
       fontWeight: '800',
       color: '#111827',
       letterSpacing: '-0.025em',
@@ -423,23 +416,23 @@ const Dashboard = () => {
     },
 
     sidebarContent: {
-      padding: '24px 16px',
+      padding: '20px 0',
       flex: 1,
       display: 'flex',
       flexDirection: 'column',
-      gap: '16px'
+      gap: '36px'
     },
 
     navItem: {
       display: 'flex',
       alignItems: 'center',
-      gap: '12px',
-      padding: '16px',
+      gap: '0px',
+      padding: '26px',
       color: '#3C7EE2',
       backgroundColor: 'white',
       borderRadius: '8px',
       border: 'none',
-      marginBottom: '8px',
+      marginBottom: '16px',
       width: '100%',
       boxSizing: 'border-box',
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
@@ -451,36 +444,31 @@ const Dashboard = () => {
     },
     navText: {
       fontWeight: '700',
-      fontSize: '16px',
+      fontSize: '12px',
       color: '#3C7EE2'
     },
 
-    // UPDATED: Main content area - starts after sidebar
-    mainContent: {
-      flex: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      overflow: 'hidden',
-      marginLeft: '280px',
-      width: 'calc(100% - 280px)'
-    },
-
-    // UPDATED: Top navigation bar - now inside main content
+    // UPDATED: Top navigation bar - Extended to full width, fixed position
     topNav: {
-      width: '100%',
+      position: 'fixed',
+      top: 0,
+      left: '220px', // Start after sidebar
+      right: '2px', // Extend to right edge
+      height: '80px',
       backgroundColor: 'rgba(60, 126, 226, 0.2)',
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       borderBottom: '1px solid rgba(60, 126, 226, 0.1)',
-      padding: '16px 32px',
+      padding: '0 60px',
       zIndex: 800,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      boxSizing: 'border-box'
     },
 
-    // NEW: Enquiries title in top nav
+    // Enquiries title in top nav
     enquiriesTitle: {
-      fontSize: '28px',
+      fontSize: '26px',
       fontWeight: '700',
       color: '#111827',
       margin: 0
@@ -504,8 +492,8 @@ const Dashboard = () => {
       gap: '12px'
     },
     avatar: {
-      width: '40px',
-      height: '40px',
+      width: '60px',
+      height: '60px',
       backgroundColor: '#3C7EE2',
       borderRadius: '50%',
       display: 'flex',
@@ -519,14 +507,14 @@ const Dashboard = () => {
       textAlign: 'left'
     },
     userName: {
-      fontSize: '16px',
+      fontSize: '20px',
       fontWeight: '700',
       color: '#111827',
       margin: 0,
       lineHeight: '1.2'
     },
     userEmail: {
-      fontSize: '14px',
+      fontSize: '18px',
       color: '#111827',
       fontWeight: '500',
       margin: 0,
@@ -536,6 +524,7 @@ const Dashboard = () => {
       backgroundColor: 'white',
       padding: '8px 16px',
       borderRadius: '6px',
+      justifyContent: 'right',
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
     },
     logoutButton: {
@@ -547,18 +536,23 @@ const Dashboard = () => {
       backgroundColor: 'transparent',
       border: 'none',
       cursor: 'pointer',
-      fontSize: '14px',
-      fontWeight: '500',
+      fontSize: '18px', 
+      fontWeight: '700',
       textDecoration: 'none'
     },
 
-    // UPDATED: Main area
+    // UPDATED: Main area - positioned after top nav and sidebar
     mainArea: {
-      flex: 1,
+      marginLeft: '120px', // Start after sidebar
+      marginTop: '60px', // Start after top nav
+      padding: '20px 40px',
+      minHeight: 'calc(100vh - 40px)',
+      boxSizing: 'border-box',
+      width:'calc (100%-120px)',
+      backgroundColor: '#f9fafb',
       display: 'flex',
       flexDirection: 'column',
-      overflow: 'hidden',
-      padding: '24px 32px'
+      alignItems: 'center' 
     },
 
     controlsContainer: {
@@ -591,8 +585,8 @@ const Dashboard = () => {
       gap: '12px'
     },
     filterButton: {
-      padding: '14px 28px',
-      fontSize: '16px',
+      padding: '12px 24px',
+      fontSize: '15px',
       borderRadius: '8px',
       border: '1px solid #d1d5db',
       backgroundColor: 'white',
@@ -600,16 +594,14 @@ const Dashboard = () => {
       cursor: 'pointer',
       transition: 'all 0.2s',
       fontWeight: '600',
-      minWidth: '140px',
+      minWidth: '120px',
       textAlign: 'center',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
     },
     filterButtonActive: {
-      backgroundColor: '#3C7EE2',
-      color: 'white',
-      borderColor: '#3C7EE2'
+     borderColor: '#3C7EE2'
     },
     searchInput: {
       width: '100%',
@@ -630,8 +622,8 @@ const Dashboard = () => {
       color: 'white',
       border: 'none',
       borderRadius: '8px',
-      padding: '14px 28px',
-      fontSize: '16px',
+      padding: '14px 24px',
+      fontSize: '15px',
       fontWeight: '700',
       cursor: 'pointer',
       display: 'flex',
@@ -640,7 +632,7 @@ const Dashboard = () => {
       gap: '8px',
       boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
       transition: 'all 0.2s',
-      minWidth: '140px'
+      minWidth: '120px'
     },
     newButtonHover: {
       backgroundColor: '#059669'
@@ -850,27 +842,27 @@ const Dashboard = () => {
       color: '#000000',
       whiteSpace: 'nowrap',
       width: '22%',
-      minWidth: '220px'
+      minWidth: '200px'
     },
     dateCell: {
       color: '#000000',
       whiteSpace: 'nowrap',
       fontWeight: '500',
       width: '15%',
-      minWidth: '150px'
+      minWidth: '200px'
     },
     emailCell: {
       color: '#000000',
       fontWeight: '500',
       whiteSpace: 'nowrap',
       width: '25%',
-      minWidth: '280px'
+      minWidth: '200px'
     },
     messageCell: {
       color: '#000000',
       fontWeight: '500',
       width: '30%',
-      minWidth: '350px',
+      minWidth: '220px',
       wordWrap: 'break-word',
       whiteSpace: 'normal'
     },
@@ -879,7 +871,7 @@ const Dashboard = () => {
       whiteSpace: 'nowrap',
       fontWeight: '500',
       width: '10%',
-      minWidth: '120px'
+      minWidth: '200px'
     },
     actionsHeaderCell: {
       width: '8%',
@@ -887,15 +879,15 @@ const Dashboard = () => {
       textAlign: 'center'
     },
     actionsCell: {
-      color: '#6b7280',
+      color: '#000000',
       whiteSpace: 'nowrap',
       width: '8%',
-      minWidth: '100px',
+      minWidth: '200px',
       textAlign: 'center',
       position: 'relative'
     },
     actionButton: {
-      color: '#6b7280',
+      color: 'black',
       backgroundColor: 'transparent',
       border: 'none',
       padding: '8px',
@@ -909,7 +901,7 @@ const Dashboard = () => {
       margin: '0 auto'
     },
 
-    // UPDATED: Action menu styles - Fixed positioning
+    // Action menu styles
     actionMenu: {
       position: 'fixed',
       backgroundColor: 'white',
@@ -952,7 +944,7 @@ const Dashboard = () => {
       color: '#dc2626'
     },
 
-    // NEW: Index column styles
+    // Index column styles
     indexHeaderCell: {
       width: '5%',
       minWidth: '60px',
@@ -966,7 +958,7 @@ const Dashboard = () => {
       minWidth: '60px'
     },
 
-    // NEW: Table footer with count
+    // Table footer with count
     tableFooter: {
       display: 'flex',
       justifyContent: 'flex-end',
@@ -979,7 +971,7 @@ const Dashboard = () => {
       color: '#374151'
     },
 
-    // NEW: Unread indicator
+    // Unread indicator
     unreadIndicator: {
       display: 'inline-block',
       width: '8px',
@@ -999,13 +991,14 @@ const Dashboard = () => {
       borderRadius: '8px'
     },
     
+    // UPDATED: Footer - positioned after sidebar
     footerContainer: {
       backgroundColor: 'white',
       borderTop: '1px solid #e5e7eb',
       padding: '20px',
-      marginTop: 'auto',
-      flexShrink: 0,
-      marginLeft: '280px'
+      marginLeft: '240px',
+      width: 'calc(100% - 240px)',
+      boxSizing: 'border-box'
     },
     loadingText: {
       color: '#6b7280',
@@ -1058,221 +1051,205 @@ const Dashboard = () => {
 
   return (
     <div style={styles.pageContainer}>
-      {/* NEW LAYOUT: Sidebar and Main Content side by side */}
-      <div style={styles.mainLayout}>
-        
-        {/* SIDEBAR - Now includes the logo */}
-        <div style={styles.sidebar}>
-          {/* Sidebar Header with Logo */}
-          <div style={styles.sidebarHeader}>
-            <h1 style={styles.logoTitle}>MyPortfolioAdmin</h1>
-          </div>
-          
-          {/* Sidebar Content */}
-          <div style={styles.sidebarContent}>
-            <nav style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <div 
-                style={{
-                  ...styles.navItem,
-                  ...(navHover ? styles.navItemHover : {})
-                }}
-                onMouseEnter={() => setNavHover(true)}
-                onMouseLeave={() => setNavHover(false)}
-              >
-                <span style={{ fontSize: '20px' }}>📨</span>
-                <span style={styles.navText}>ENQUIRY MANAGEMENT</span>
-              </div>
-            </nav>
-          </div>
+      {/* SIDEBAR */}
+      <div style={styles.sidebar}>
+        <div style={styles.sidebarHeader}>
+          <h1 style={styles.logoTitle}>MyPortfolioAdmin</h1>
         </div>
-        
-        {/* MAIN CONTENT AREA - Starts after sidebar */}
-        <div style={styles.mainContent}>
-          {/* TOP NAV BAR - Now inside main content with ENQUIRIES title */}
-          <div style={styles.topNav}>
-            <div style={styles.topNavContent}>
-              {/* ENQUIRIES title on the left */}
-              <h2 style={styles.enquiriesTitle}>ENQUIRIES</h2>
-              
-              {/* User Info & Logout on the right */}
-              <div style={styles.userInfo}>
-                <div style={styles.userAvatar}>
-                  <div style={styles.avatar}>
-                    <span>{user.name ? user.name.charAt(0).toUpperCase() : 'O'}</span>
-                  </div>
-                  <div style={styles.userText}>
-                    <p style={styles.userName}>{user.name}</p>
-                    <p style={styles.userEmail}>{user.email}</p>
-                  </div>
-                </div>
-                {/* White container only for signout */}
-                <div style={styles.logoutContainer}>
-                  <button 
-                    onClick={logout}
-                    style={styles.logoutButton}
-                  >
-                    <span>⏻ Sign Out</span>
-                  </button>
-                </div>
+        <div style={styles.sidebarContent}>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div 
+              style={{
+                ...styles.navItem,
+                ...(navHover ? styles.navItemHover : {})
+              }}
+              onMouseEnter={() => setNavHover(true)}
+              onMouseLeave={() => setNavHover(false)}
+            >
+              <span style={{ fontSize: '20px' }}>📨</span>
+              <span style={styles.navText}>ENQUIRY MANAGEMENT</span>
+            </div>
+          </nav>
+        </div>
+      </div>
+      
+      {/* UPDATED: TOP NAV BAR - Extended to full width, fixed position */}
+      <div style={styles.topNav}>
+        <div style={styles.topNavContent}>
+          <h2 style={styles.enquiriesTitle}>ENQUIRIES</h2>
+          <div style={styles.userInfo}>
+            <div style={styles.userAvatar}>
+              <div style={styles.avatar}>
+                <span>{user.name ? user.name.charAt(0).toUpperCase() : 'O'}</span>
               </div>
+              <div style={styles.userText}>
+                <p style={styles.userName}>{user.name}</p>
+                <p style={styles.userEmail}>{user.email}</p>
+              </div>
+            </div>
+            <div style={styles.logoutContainer}>
+              <button 
+                onClick={logout}
+                style={styles.logoutButton}
+              >
+                <span>⏻ Sign Out</span>
+              </button>
             </div>
           </div>
-
-          {/* MAIN CONTENT - Your existing table and controls */}
-          <main style={styles.mainArea}>
-            {/* Controls Container */}
-            <div style={styles.controlsContainer}>
-              {/* Left side - Filters and Search */}
-              <div style={styles.filtersContainer}>
-                {/* Sort By */}
-                <div style={styles.filterGroup}>
-                  <span style={styles.filterLabel}>Sort By:</span>
-                  <div style={styles.filterButtons}>
-                    <button
-                      onClick={() => setSortBy('name')}
-                      style={{
-                        ...styles.filterButton,
-                        ...(sortBy === 'name' ? styles.filterButtonActive : {})
-                      }}
-                    >
-                      Name A-Z
-                    </button>
-                    <button
-                      onClick={() => setSortBy('date')}
-                      style={{
-                        ...styles.filterButton,
-                        ...(sortBy === 'date' ? styles.filterButtonActive : {})
-                      }}
-                    >
-                      Date
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Search */}
-                <div style={{ flex: 1, maxWidth: '320px' }}>
-                  <input
-                    type="text"
-                    placeholder="Search enquiries..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    style={styles.searchInput}
-                  />
-                </div>
-              </div>
-
-              {/* Right side - NEW button */}
-              <div style={styles.newButtonContainer}>
-                <button 
-                  style={{
-                    ...styles.newButton,
-                    ...(newButtonHover ? styles.newButtonHover : {})
-                  }}
-                  onMouseEnter={() => setNewButtonHover(true)}
-                  onMouseLeave={() => setNewButtonHover(false)}
-                  onClick={openModal}
-                >
-                  <span style={{ fontSize: '18px' }}>+</span>
-                  NEW
-                </button>
-              </div>
-            </div>
-
-            {/* Table Section */}
-            <div style={styles.tableSection}>
-              {loading ? (
-                <div style={styles.loadingContainer}>
-                  <p style={styles.loadingText}>Loading enquiries...</p>
-                </div>
-              ) : (
-                <div style={styles.tableContainer}>
-                  <div style={styles.tableWrapper}>
-                    <table style={styles.table}>
-                      <thead style={styles.tableHeader}>
-                        <tr>
-                          {/* NEW: Index column header */}
-                          <th style={{...styles.tableHeaderCell, ...styles.indexHeaderCell}}>#</th>
-                          <th style={{...styles.tableHeaderCell, ...styles.nameCell}}>NAME</th>
-                          <th style={{...styles.tableHeaderCell, ...styles.dateCell}}>DATE</th>
-                          <th style={{...styles.tableHeaderCell, ...styles.emailCell}}>EMAIL</th>
-                          <th style={{...styles.tableHeaderCell, ...styles.messageCell}}>ENQUIRY MESSAGE</th>
-                          <th style={{...styles.tableHeaderCell, ...styles.timeCell}}>TIME</th>
-                          <th style={{...styles.tableHeaderCell, ...styles.actionsHeaderCell}}>ACTIONS</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filteredEnquiries.length > 0 ? (
-                          filteredEnquiries.map((enquiry, index) => (
-                            <tr 
-                              key={enquiry.id} 
-                              style={{
-                                ...styles.tableRow,
-                                backgroundColor: isUnread(enquiry) ? 'rgba(60, 126, 226, 0.05)' : 'white'
-                              }}
-                              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isUnread(enquiry) ? 'rgba(60, 126, 226, 0.1)' : 'rgba(60, 126, 226, 0.05)'}
-                              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isUnread(enquiry) ? 'rgba(60, 126, 226, 0.05)' : 'white'}
-                            >
-                              {/* NEW: Index column */}
-                              <td style={{ ...styles.tableCell, ...styles.indexCell }}>
-                                {index + 1}
-                              </td>
-                              <td style={{ ...styles.tableCell, ...styles.nameCell }}>
-                                {enquiry.name || 'N/A'}
-                                {isUnread(enquiry) && <span style={styles.unreadIndicator}></span>}
-                              </td>
-                              <td style={{ ...styles.tableCell, ...styles.dateCell }}>
-                                {formatDate(enquiry.timestamp)}
-                              </td>
-                              <td style={{ ...styles.tableCell, ...styles.emailCell }}>
-                                {enquiry.email || 'N/A'}
-                              </td>
-                              <td style={{ ...styles.tableCell, ...styles.messageCell }}>
-                                <div style={styles.lineClamp3}>
-                                  {enquiry.message || 'No message provided'}
-                                </div>
-                              </td>
-                              <td style={{ ...styles.tableCell, ...styles.timeCell }}>
-                                {formatTime(enquiry.timestamp)}
-                              </td>
-                              <td style={{ ...styles.tableCell, ...styles.actionsCell }}>
-                                <div style={{ position: 'relative', display: 'inline-block' }}>
-                                  <button 
-                                    style={styles.actionButton}
-                                    onMouseEnter={(e) => e.target.style.color = '#374151'}
-                                    onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
-                                    onClick={(e) => toggleMenu(enquiry.id, e)}
-                                  >
-                                    <span>⋯</span>
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan="7" style={styles.noDataCell}>
-                              {searchQuery ? 'No enquiries match your search.' : 'No enquiries found.'}
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                  
-                  {/* NEW: Enquiry count footer */}
-                  {filteredEnquiries.length > 0 && (
-                    <div style={styles.tableFooter}>
-                     1-8/{filteredEnquiries.length}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </main>
         </div>
       </div>
 
-      {/* Footer */}
+      {/* UPDATED: MAIN CONTENT - Directly on the page */}
+      <main style={styles.mainArea}>
+        {/* Controls Container */}
+        <div style={styles.controlsContainer}>
+          {/* Left side - Filters and Search */}
+          <div style={styles.filtersContainer}>
+            {/* Sort By */}
+            <div style={styles.filterGroup}>
+              <span style={styles.filterLabel}>Sort By:</span>
+              <div style={styles.filterButtons}>
+                <button
+                  onClick={() => setSortBy('name')}
+                  style={{
+                    ...styles.filterButton,
+                    ...(sortBy === 'name' ? styles.filterButtonActive : {})
+                  }}
+                >
+                  Name A-Z
+                </button>
+                <button
+                  onClick={() => setSortBy('date')}
+                  style={{
+                    ...styles.filterButton,
+                    ...(sortBy === 'date' ? styles.filterButtonActive : {})
+                  }}
+                >
+                  Date
+                </button>
+              </div>
+            </div>
+            
+            {/* Search */}
+            <div style={{ flex: 1, maxWidth: '320px' }}>
+              <input
+                type="text"
+                placeholder="Search enquiries..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={styles.searchInput}
+              />
+            </div>
+          </div>
+
+          {/* Right side - NEW button */}
+          <div style={styles.newButtonContainer}>
+            <button 
+              style={{
+                ...styles.newButton,
+                ...(newButtonHover ? styles.newButtonHover : {})
+              }}
+              onMouseEnter={() => setNewButtonHover(true)}
+              onMouseLeave={() => setNewButtonHover(false)}
+              onClick={openModal}
+            >
+              <span style={{ fontSize: '18px' }}>+</span>
+              NEW
+            </button>
+          </div>
+        </div>
+
+        {/* Table Section */}
+        <div style={styles.tableSection}>
+          {loading ? (
+            <div style={styles.loadingContainer}>
+              <p style={styles.loadingText}>Loading enquiries...</p>
+            </div>
+          ) : (
+            <div style={styles.tableContainer}>
+              <div style={styles.tableWrapper}>
+                <table style={styles.table}>
+                  <thead style={styles.tableHeader}>
+                    <tr>
+                      <th style={{...styles.tableHeaderCell, ...styles.indexHeaderCell}}>#</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.nameCell}}>NAME</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.dateCell}}>DATE</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.emailCell}}>EMAIL</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.messageCell}}>ENQUIRY MESSAGE</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.timeCell}}>TIME</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.actionsHeaderCell}}>ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredEnquiries.length > 0 ? (
+                      filteredEnquiries.map((enquiry, index) => (
+                        <tr 
+                          key={enquiry.id} 
+                          style={{
+                            ...styles.tableRow,
+                            backgroundColor: isUnread(enquiry) ? 'rgba(60, 126, 226, 0.05)' : 'white'
+                          }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isUnread(enquiry) ? 'rgba(60, 126, 226, 0.1)' : 'rgba(60, 126, 226, 0.05)'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isUnread(enquiry) ? 'rgba(60, 126, 226, 0.05)' : 'white'}
+                        >
+                          <td style={{ ...styles.tableCell, ...styles.indexCell }}>
+                            {index + 1}
+                          </td>
+                          <td style={{ ...styles.tableCell, ...styles.nameCell }}>
+                            {enquiry.name || 'N/A'}
+                            {isUnread(enquiry) && <span style={styles.unreadIndicator}></span>}
+                          </td>
+                          <td style={{ ...styles.tableCell, ...styles.dateCell }}>
+                            {formatDate(enquiry.timestamp)}
+                          </td>
+                          <td style={{ ...styles.tableCell, ...styles.emailCell }}>
+                            {enquiry.email || 'N/A'}
+                          </td>
+                          <td style={{ ...styles.tableCell, ...styles.messageCell }}>
+                            <div style={styles.lineClamp3}>
+                              {enquiry.message || 'No message provided'}
+                            </div>
+                          </td>
+                          <td style={{ ...styles.tableCell, ...styles.timeCell }}>
+                            {formatTime(enquiry.timestamp)}
+                          </td>
+                          <td style={{ ...styles.tableCell, ...styles.actionsCell }}>
+                            <div style={{ position: 'relative', display: 'inline-block' }}>
+                              <button 
+                                style={styles.actionButton}
+                                onMouseEnter={(e) => e.target.style.color = '#374151'}
+                                onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                                onClick={(e) => toggleMenu(enquiry.id, e)}
+                              >
+                                <span>⋯</span>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="7" style={styles.noDataCell}>
+                          {searchQuery ? 'No enquiries match your search.' : 'No enquiries found.'}
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              
+              {/* Enquiry count footer */}
+              {filteredEnquiries.length > 0 && (
+                <div style={styles.tableFooter}>
+                 1-8/{filteredEnquiries.length}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* UPDATED: FOOTER - Directly on the page */}
       <div style={styles.footerContainer}>
         <div style={styles.footerText}>
           <p>© 2025 All rights reserved.</p>
@@ -1509,4 +1486,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard; 
