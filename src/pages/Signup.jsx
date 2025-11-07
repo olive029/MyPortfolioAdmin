@@ -89,9 +89,19 @@ const Signup = () => {
   };
 
   const styles = {
+    container: {
+      display: 'flex',
+      position:'fixed',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      minHeight: '100vh',
+      width: '100%',
+      padding: '30px 20px'
+    },
     header: {
       textAlign: 'center',
-      marginBottom: '50px',
+      marginBottom: '40px',
       width: '100%'
     },
     mainTitle: {
@@ -105,13 +115,15 @@ const Signup = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      maxWidth: '1200px',
       width: '100%',
+      maxWidth: '1200px',
+      minHeight: '500px',
       backgroundColor: 'rgba(60, 126, 226, 0.15)',
       borderRadius: '30px',
-      padding: '80px 60px',
+      padding: '50px 40px',
       boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
-      border: '1px solid rgba(60, 126, 226, 0.3)'
+      border: '1px solid rgba(60, 126, 226, 0.3)',
+      margin: '0 auto'
     },
     formContainer: {
       backgroundColor: 'white',
@@ -119,14 +131,14 @@ const Signup = () => {
       padding: '60px 50px',
       boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
       width: '100%',
-      minWidth: '550px',
-      maxWidth: '600px'
+      maxWidth: '650px',
+      margin: '0 auto'
     },
     formHeader: {
-      fontSize: '32px',
+      fontSize: '34px',
       fontWeight: 'bold',
       color: '#111827',
-      marginBottom: '30px',
+      marginBottom: '35px',
       textAlign: 'center'
     },
     form: {
@@ -137,6 +149,7 @@ const Signup = () => {
     inputRow: {
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'space-between',
       gap: '30px',
       width: '100%'
     },
@@ -144,14 +157,14 @@ const Signup = () => {
       fontSize: '17px',
       fontWeight: '600',
       color: '#374151',
-      width: '140px',
+      width: '160px',
       textAlign: 'left',
       flexShrink: 0
     },
     inputGroup: {
       flex: 1,
       display: 'flex',
-      minWidth: '350px'
+      minWidth: '380px'
     },
     input: {
       flex: 1,
@@ -171,13 +184,13 @@ const Signup = () => {
     },
     buttonContainer: {
       display: 'flex',
-      justifyContent: 'flex-start',
-      marginTop: '20px',
-      marginLeft: '170px',
-      width: '350px'
+      justifyContent: 'center',
+      marginTop: '25px',
+      width: '100%'
     },
     button: {
       width: '100%',
+      maxWidth: '400px',
       backgroundColor: '#3C7EE2',
       color: 'white',
       padding: '16px',
@@ -189,12 +202,11 @@ const Signup = () => {
       transition: 'all 0.2s ease'
     },
     loginLink: {
-      textAlign: 'left',
+      textAlign: 'center',
       fontSize: '16px',
       color: '#6b7280',
       marginTop: '25px',
-      marginLeft: '170px',
-      width: '350px'
+      width: '100%'
     },
     link: {
       color: '#3C7EE2',
@@ -230,132 +242,134 @@ const Signup = () => {
 
   return (
     <AuthLayout>
-      {/* Header outside the container */}
-      <div style={styles.header}>
-        <h1 style={styles.mainTitle}>MyPortfolioAdmin</h1>
-      </div>
+      <div style={styles.container}>
+        {/* Header at the top center */}
+        <div style={styles.header}>
+          <h1 style={styles.mainTitle}>MyPortfolioAdmin</h1>
+        </div>
 
-      {/* Main Content Container */}
-      <div style={styles.contentContainer}>
-        {/* Signup Form in White Container */}
-        <div style={styles.formContainer}>
-          {/* Create Account Header inside the form container */}
-          <h2 style={styles.formHeader}>Create Account</h2>
+        {/* Main Content Container */}
+        <div style={styles.contentContainer}>
+          {/* Signup Form in White Container */}
+          <div style={styles.formContainer}>
+            {/* Create Account Header inside the form container */}
+            <h2 style={styles.formHeader}>Create Account</h2>
 
-          {isSuccess && (
-            <div style={styles.successMessage}>
-              ✅ Account created successfully! Redirecting to login...
-            </div>
-          )}
-
-          {error && !isSuccess && (
-            <div style={styles.errorMessage}>
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} style={styles.form}>
-            <div style={styles.inputRow}>
-              <label style={styles.label}>Full Name</label>
-              <div style={styles.inputGroup}>
-                <input
-                  type="text"
-                  id="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  style={styles.input}
-                  placeholder="Your full name"
-                  required
-                  disabled={loading}
-                  onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
-                  onBlur={(e) => Object.assign(e.target.style, styles.input)}
-                />
+            {isSuccess && (
+              <div style={styles.successMessage}>
+                ✅ Account created successfully! Redirecting to login...
               </div>
-            </div>
+            )}
 
-            <div style={styles.inputRow}>
-              <label style={styles.label}>Email</label>
-              <div style={styles.inputGroup}>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  style={styles.input}
-                  placeholder="your@email.com"
-                  required
-                  disabled={loading}
-                  onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
-                  onBlur={(e) => Object.assign(e.target.style, styles.input)}
-                />
+            {error && !isSuccess && (
+              <div style={styles.errorMessage}>
+                {error}
               </div>
-            </div>
+            )}
 
-            <div style={styles.inputRow}>
-              <label style={styles.label}>Password</label>
-              <div style={styles.inputGroup}>
-                <input
-                  type="password"
-                  id="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  style={styles.input}
-                  placeholder="••••••"
-                  required
-                  disabled={loading}
-                  onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
-                  onBlur={(e) => Object.assign(e.target.style, styles.input)}
-                />
+            <form onSubmit={handleSubmit} style={styles.form}>
+              <div style={styles.inputRow}>
+                <label style={styles.label}>Full Name</label>
+                <div style={styles.inputGroup}>
+                  <input
+                    type="text"
+                    id="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="Your full name"
+                    required
+                    disabled={loading}
+                    onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
+                    onBlur={(e) => Object.assign(e.target.style, styles.input)}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div style={styles.inputRow}>
-              <label style={styles.label}>Confirm Password</label>
-              <div style={styles.inputGroup}>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  style={styles.input}
-                  placeholder="••••••"
-                  required
-                  disabled={loading}
-                  onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
-                  onBlur={(e) => Object.assign(e.target.style, styles.input)}
-                />
+              <div style={styles.inputRow}>
+                <label style={styles.label}>Email</label>
+                <div style={styles.inputGroup}>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="your@email.com"
+                    required
+                    disabled={loading}
+                    onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
+                    onBlur={(e) => Object.assign(e.target.style, styles.input)}
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Submit Button - Aligned with input fields */}
-            <div style={styles.buttonContainer}>
-              <button
-                type="submit"
-                style={{
-                  ...styles.button,
-                  opacity: loading ? 0.7 : 1,
-                  cursor: loading ? 'not-allowed' : 'pointer'
-                }}
-                disabled={loading}
-                onMouseOver={(e) => !loading && (e.target.style.backgroundColor = '#2D6CD0')}
-                onMouseOut={(e) => !loading && (e.target.style.backgroundColor = '#3C7EE2')}
-              >
-                {loading ? 'CREATING ACCOUNT...' : 'SIGN UP'}
-              </button>
-            </div>
+              <div style={styles.inputRow}>
+                <label style={styles.label}>Password</label>
+                <div style={styles.inputGroup}>
+                  <input
+                    type="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="••••••"
+                    required
+                    disabled={loading}
+                    onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
+                    onBlur={(e) => Object.assign(e.target.style, styles.input)}
+                  />
+                </div>
+              </div>
 
-            {/* Login Link - Aligned with input fields */}
-            <div style={styles.loginLink}>
-              <Link 
-                to="/login" 
-                style={styles.link}
-                onMouseOver={(e) => Object.assign(e.target.style, styles.linkHover)}
-                onMouseOut={(e) => Object.assign(e.target.style, styles.link)}
-              >
-                Back to login
-              </Link>
-            </div>
-          </form>
+              <div style={styles.inputRow}>
+                <label style={styles.label}>Confirm Password</label>
+                <div style={styles.inputGroup}>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="••••••"
+                    required
+                    disabled={loading}
+                    onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
+                    onBlur={(e) => Object.assign(e.target.style, styles.input)}
+                  />
+                </div>
+              </div>
+
+              {/* Submit Button - Centered */}
+              <div style={styles.buttonContainer}>
+                <button
+                  type="submit"
+                  style={{
+                    ...styles.button,
+                    opacity: loading ? 0.7 : 1,
+                    cursor: loading ? 'not-allowed' : 'pointer'
+                  }}
+                  disabled={loading}
+                  onMouseOver={(e) => !loading && (e.target.style.backgroundColor = '#2D6CD0')}
+                  onMouseOut={(e) => !loading && (e.target.style.backgroundColor = '#3C7EE2')}
+                >
+                  {loading ? 'CREATING ACCOUNT...' : 'SIGN UP'}
+                </button>
+              </div>
+
+              {/* Login Link - Centered */}
+              <div style={styles.loginLink}>
+                <Link 
+                  to="/login" 
+                  style={styles.link}
+                  onMouseOver={(e) => Object.assign(e.target.style, styles.linkHover)}
+                  onMouseOut={(e) => Object.assign(e.target.style, styles.link)}
+                >
+                  Back to login
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </AuthLayout>
