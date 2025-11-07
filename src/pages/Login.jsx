@@ -104,7 +104,7 @@ const Login = () => {
       minHeight: '450px',
       backgroundColor: 'rgba(60, 126, 226, 0.15)',
       borderRadius: '30px',
-      padding: '40px 40px',
+      padding: '40px 50px',
       boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
       border: '1px solid rgba(60, 126, 226, 0.3)',
       margin: '0 auto'
@@ -112,14 +112,14 @@ const Login = () => {
     formContainer: {
       backgroundColor: 'white',
       borderRadius: '20px',
-      padding: '50px 50px',
+      padding: '50px 30px',
       boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
       width: '100%',
       maxWidth: '650px',
       margin: '0 auto'
     },
     formHeader: {
-      fontSize: '34px',
+      fontSize: '40px',
       fontWeight: 'bold',
       color: '#111827',
       marginBottom: '30px',
@@ -175,7 +175,7 @@ const Login = () => {
       marginLeft: '190px'
     },
     button: {
-      width: '380px',
+      width: '400px',
       backgroundColor: '#3C7EE2',
       color: 'white',
       padding: '16px',
@@ -185,6 +185,7 @@ const Login = () => {
       fontWeight: '600',
       cursor: 'pointer',
       transition: 'all 0.2s ease'
+      
     },
     signupLink: {
       textAlign: 'left',
@@ -229,7 +230,7 @@ const Login = () => {
           {/* Login Form in White Container */}
           <div style={styles.formContainer}>
             {/* Login Header inside the form container */}
-            <h2 style={styles.formHeader}>Login</h2>
+            <h2 style={styles.formHeader}>SIGN IN</h2>
 
             {error && (
               <div style={styles.errorMessage}>
@@ -287,7 +288,7 @@ const Login = () => {
                   onMouseOver={(e) => !loading && (e.target.style.backgroundColor = '#2D6CD0')}
                   onMouseOut={(e) => !loading && (e.target.style.backgroundColor = '#3C7EE2')}
                 >
-                  {loading ? 'LOGGING IN...' : 'LOGIN'}
+                  {loading ? 'SIGNING IN...' : 'SIGN  IN'}
                 </button>
               </div>
 
