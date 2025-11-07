@@ -376,7 +376,8 @@ const Dashboard = () => {
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
-      backgroundColor: '#f9fafb'
+      backgroundColor: '#f9fafb',
+      fontFamily:'"Inclusive Sans"'
     },
 
     // Sidebar
@@ -402,7 +403,8 @@ const Dashboard = () => {
       minHeight: '80px',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      fontFamily:'"Inclusive Sans"'
     },
 
     // Logo
@@ -412,7 +414,8 @@ const Dashboard = () => {
       color: '#111827',
       letterSpacing: '-0.025em',
       textAlign: 'center',
-      margin: 0
+      margin: 0,
+      fontFamily:'"Inclusive Sans"'
     },
 
     sidebarContent: {
@@ -454,7 +457,7 @@ const Dashboard = () => {
       top: 0,
       left: '220px', // Start after sidebar
       right: '2px', // Extend to right edge
-      height: '80px',
+      height: '60px',
       backgroundColor: 'rgba(60, 126, 226, 0.2)',
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       borderBottom: '1px solid rgba(60, 126, 226, 0.1)',
@@ -468,8 +471,9 @@ const Dashboard = () => {
 
     // Enquiries title in top nav
     enquiriesTitle: {
-      fontSize: '26px',
+      fontSize: '20px',
       fontWeight: '700',
+      fontFamily:'Inclusive Sans',
       color: '#111827',
       margin: 0
     },
@@ -492,23 +496,23 @@ const Dashboard = () => {
       gap: '12px'
     },
     avatar: {
-      width: '60px',
-      height: '60px',
+      width: '40px',
+      height: '40px',
       backgroundColor: '#3C7EE2',
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       color: 'white',
-      fontSize: '16px',
+      fontSize: '20px',
       fontWeight: '600'
     },
     userText: {
       textAlign: 'left'
     },
     userName: {
-      fontSize: '20px',
-      fontWeight: '700',
+      fontSize: '18px',
+      fontWeight: '600',
       color: '#111827',
       margin: 0,
       lineHeight: '1.2'
@@ -518,11 +522,11 @@ const Dashboard = () => {
       color: '#111827',
       fontWeight: '500',
       margin: 0,
-      lineHeight: '1.2'
+      lineHeight: '1.0'
     },
     logoutContainer: {
       backgroundColor: 'white',
-      padding: '8px 16px',
+      padding: '8px 10px',
       borderRadius: '6px',
       justifyContent: 'right',
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
@@ -536,65 +540,82 @@ const Dashboard = () => {
       backgroundColor: 'transparent',
       border: 'none',
       cursor: 'pointer',
-      fontSize: '18px', 
-      fontWeight: '700',
+      fontSize: '16px', 
+      fontWeight: '550',
       textDecoration: 'none'
     },
 
     // UPDATED: Main area - positioned after top nav and sidebar
     mainArea: {
-      marginLeft: '120px', // Start after sidebar
-      marginTop: '60px', // Start after top nav
-      padding: '20px 40px',
-      minHeight: 'calc(100vh - 40px)',
+     position: 'fixed',
+     top:'60px',
+        left: '200px', // Start after sidebar
+        right: '2px', // Extend to right edge
+        padding: '20px 20px',   
       boxSizing: 'border-box',
-      width:'calc (100%-120px)',
+      width:'calc (100%-200px)',
       backgroundColor: '#f9fafb',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center' 
+      alignItems: 'center',
+      overflow:'auto',
+
+     
+
     },
 
     controlsContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginBottom: '24px',
-      gap: '16px',
-      flexShrink: 0
+      marginBottom: '20px',
+      gap: '20px',
+      flexShrink: 0,
+      width:'100%'
     },
+    filterRow: {
+      backgroundColor: '#f8fafc',
+      borderBottom: '1px solid #e5e7eb',
+      display: 'flex',
+      alignItems: 'center',
+      padding: '16px 0',
+      marginBottom: '0'
+    },
+  
     filtersContainer: {
       display: 'flex',
       alignItems: 'center',
-      gap: '24px',
+      justifyContent:'space-between',
+      gap: '28px',
+      width:'100%',
       flex: 1
     },
     filterGroup: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       gap: '12px'
     },
     filterLabel: {
-      fontSize: '16px',
-      fontWeight: '600',
+      fontSize: '18px',
+      fontWeight: '800',
       color: '#374151',
       whiteSpace: 'nowrap'
     },
     filterButtons: {
       display: 'flex',
-      gap: '12px'
+      gap: '8px'
     },
     filterButton: {
       padding: '12px 24px',
-      fontSize: '15px',
+      fontSize: '14px',
       borderRadius: '8px',
       border: '1px solid #d1d5db',
       backgroundColor: 'white',
       color: '#374151',
       cursor: 'pointer',
       transition: 'all 0.2s',
-      fontWeight: '600',
-      minWidth: '120px',
+      fontWeight: '500',
+      minWidth: '80px',
       textAlign: 'center',
       display: 'flex',
       alignItems: 'center',
@@ -622,17 +643,17 @@ const Dashboard = () => {
       color: 'white',
       border: 'none',
       borderRadius: '8px',
-      padding: '14px 24px',
+      padding: '14px 14px',
       fontSize: '15px',
-      fontWeight: '700',
+      fontWeight: '600',
       cursor: 'pointer',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: '8px',
+      gap: '6px',
       boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
       transition: 'all 0.2s',
-      minWidth: '120px'
+      minWidth: '80px'
     },
     newButtonHover: {
       backgroundColor: '#059669'
@@ -776,7 +797,8 @@ const Dashboard = () => {
       flex: 1,
       display: 'flex',
       flexDirection: 'column',
-      minHeight: 0
+      minHeight: 0,
+      width:'100%'
     },
     tableContainer: {
       backgroundColor: 'rgba(60, 126, 226, 0.1)',
@@ -786,18 +808,20 @@ const Dashboard = () => {
       overflow: 'hidden',
       flex: 1,
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      width:'100%'
     },
     tableWrapper: {
       flex: 1,
-      overflow: 'auto'
+      overflow: 'auto',
+      width:'100%'
     },
     table: {
       width: '100%',
       borderCollapse: 'separate',
       borderSpacing: '0 8px',
       minWidth: '100%',
-      tableLayout: 'auto',
+      tableLayout: 'fixed',
       padding: '0 8px'
     },
     tableHeader: {
@@ -807,9 +831,9 @@ const Dashboard = () => {
       zIndex: 10
     },
     tableHeaderCell: {
-      padding: '20px 16px',
+      padding: '18px 14px',
       textAlign: 'left',
-      fontSize: '16px',
+      fontSize: '15px',
       fontWeight: '700',
       color: 'white',
       textTransform: 'uppercase',
@@ -828,14 +852,20 @@ const Dashboard = () => {
       marginBottom: '8px'
     },
     tableCell: {
-      padding: '20px 16px',
-      fontSize: '15px',
+      padding: '16px 12px',
+      fontSize: '14px',
       verticalAlign: 'top',
       lineHeight: '1.5',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       color: '#000000',
-      border: 'none'
+      border: 'none',
+      whiteSpace:'nowrap'
+    },
+    nameHeaderCell: {
+      width: '10%',
+      minWidth: '40px',
+      textAlign: 'center'
     },
     nameCell: {
       fontWeight: '500',
@@ -844,6 +874,11 @@ const Dashboard = () => {
       width: '22%',
       minWidth: '200px'
     },
+    dateHeaderCell: {
+      width: '10%',
+      minWidth: '40px',
+      textAlign: 'center'
+    },
     dateCell: {
       color: '#000000',
       whiteSpace: 'nowrap',
@@ -851,12 +886,22 @@ const Dashboard = () => {
       width: '15%',
       minWidth: '200px'
     },
+    emailHeaderCell: {
+      width: '10%',
+      minWidth: '40px',
+      textAlign: 'center'
+    },
     emailCell: {
       color: '#000000',
       fontWeight: '500',
       whiteSpace: 'nowrap',
       width: '25%',
       minWidth: '200px'
+    },
+    messageHeaderCell: {
+      width: '10%',
+      minWidth: '40px',
+      textAlign: 'center'
     },
     messageCell: {
       color: '#000000',
@@ -866,17 +911,23 @@ const Dashboard = () => {
       wordWrap: 'break-word',
       whiteSpace: 'normal'
     },
+    timeHeaderCell: {
+      width: '10%',
+      minWidth: '40px',
+      textAlign: 'center'
+    },
     timeCell: {
       color: '#000000',
       whiteSpace: 'nowrap',
       fontWeight: '500',
       width: '10%',
-      minWidth: '200px'
+      minWidth: '20px'
     },
     actionsHeaderCell: {
       width: '8%',
       minWidth: '100px',
-      textAlign: 'center'
+      textAlign: 'center',
+      color:'white',
     },
     actionsCell: {
       color: '#000000',
@@ -976,7 +1027,7 @@ const Dashboard = () => {
       display: 'inline-block',
       width: '8px',
       height: '8px',
-      backgroundColor: '#3C7EE2',
+      
       borderRadius: '50%',
       marginLeft: '8px'
     },
@@ -991,15 +1042,7 @@ const Dashboard = () => {
       borderRadius: '8px'
     },
     
-    // UPDATED: Footer - positioned after sidebar
-    footerContainer: {
-      backgroundColor: 'white',
-      borderTop: '1px solid #e5e7eb',
-      padding: '20px',
-      marginLeft: '240px',
-      width: 'calc(100% - 240px)',
-      boxSizing: 'border-box'
-    },
+    
     loadingText: {
       color: '#6b7280',
       fontWeight: '500',
@@ -1172,11 +1215,11 @@ const Dashboard = () => {
                   <thead style={styles.tableHeader}>
                     <tr>
                       <th style={{...styles.tableHeaderCell, ...styles.indexHeaderCell}}>#</th>
-                      <th style={{...styles.tableHeaderCell, ...styles.nameCell}}>NAME</th>
-                      <th style={{...styles.tableHeaderCell, ...styles.dateCell}}>DATE</th>
-                      <th style={{...styles.tableHeaderCell, ...styles.emailCell}}>EMAIL</th>
-                      <th style={{...styles.tableHeaderCell, ...styles.messageCell}}>ENQUIRY MESSAGE</th>
-                      <th style={{...styles.tableHeaderCell, ...styles.timeCell}}>TIME</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.nameHeaderCell}}>NAME</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.dateHeaderCell}}>DATE</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.emailHeaderCell}}>EMAIL</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.messageHeaderCell}}>ENQUIRY MESSAGE</th>
+                      <th style={{...styles.tableHeaderCell, ...styles.timeHeaderCell}}>TIME</th>
                       <th style={{...styles.tableHeaderCell, ...styles.actionsHeaderCell}}>ACTIONS</th>
                     </tr>
                   </thead>
@@ -1248,13 +1291,6 @@ const Dashboard = () => {
           )}
         </div>
       </main>
-
-      {/* UPDATED: FOOTER - Directly on the page */}
-      <div style={styles.footerContainer}>
-        <div style={styles.footerText}>
-          <p>© 2025 All rights reserved.</p>
-        </div>
-      </div>
 
       {/* Action Menu */}
       {activeMenu && (
