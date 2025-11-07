@@ -91,21 +91,24 @@ const Signup = () => {
   const styles = {
     container: {
       display: 'flex',
-      position:'fixed',
+      
+      top:'0',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'flex-start',
       minHeight: '100vh',
       width: '100%',
-      padding: '30px 20px'
+      padding: '30px 10px',
+      boxSizing:'border-box'
     },
     header: {
       textAlign: 'center',
+      
       marginBottom: '40px',
       width: '100%'
     },
     mainTitle: {
-      fontSize: '52px',
+      fontSize: '64px',
       fontWeight: 'bold',
       color: '#111827',
       marginBottom: '0',
@@ -116,11 +119,11 @@ const Signup = () => {
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
-      maxWidth: '1200px',
-      minHeight: '500px',
+      maxWidth: '800px',
+      minHeight: '400px',
       backgroundColor: 'rgba(60, 126, 226, 0.15)',
       borderRadius: '30px',
-      padding: '50px 40px',
+      padding: '40px 30px',
       boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
       border: '1px solid rgba(60, 126, 226, 0.3)',
       margin: '0 auto'
@@ -135,10 +138,10 @@ const Signup = () => {
       margin: '0 auto'
     },
     formHeader: {
-      fontSize: '34px',
+      fontSize: '48px',
       fontWeight: 'bold',
       color: '#111827',
-      marginBottom: '35px',
+      marginBottom: '45px',
       textAlign: 'center'
     },
     form: {
@@ -184,13 +187,13 @@ const Signup = () => {
     },
     buttonContainer: {
       display: 'flex',
-      justifyContent: 'center',
-      marginTop: '25px',
-      width: '100%'
+      justifyContent: 'flex-start',
+      marginTop: '15px',
+      width: '100%',
+      marginLeft: '190px'
     },
     button: {
-      width: '100%',
-      maxWidth: '400px',
+      width: '380px',
       backgroundColor: '#3C7EE2',
       color: 'white',
       padding: '16px',
@@ -202,11 +205,12 @@ const Signup = () => {
       transition: 'all 0.2s ease'
     },
     loginLink: {
-      textAlign: 'center',
+      textAlign: 'left',
       fontSize: '16px',
       color: '#6b7280',
-      marginTop: '25px',
-      width: '100%'
+      marginTop: '15px',
+      marginLeft: '190px',
+      width: '380px'
     },
     link: {
       color: '#3C7EE2',
@@ -340,7 +344,7 @@ const Signup = () => {
                 </div>
               </div>
 
-              {/* Submit Button - Centered */}
+              {/* Submit Button - Aligned with input fields */}
               <div style={styles.buttonContainer}>
                 <button
                   type="submit"
@@ -357,7 +361,7 @@ const Signup = () => {
                 </button>
               </div>
 
-              {/* Login Link - Centered */}
+              {/* Login Link - Aligned with button */}
               <div style={styles.loginLink}>
                 <Link 
                   to="/login" 
