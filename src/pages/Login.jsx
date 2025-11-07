@@ -6,12 +6,20 @@ import { auth } from '../config/firebase';
 import AuthLayout from '../components/AuthLayout';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,29 +27,25 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // Firebase authentication
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth, 
+        formData.email, 
+        formData.password
+      );
       const user = userCredential.user;
       
       console.log('✅ Login successful:', user);
       
-      // Store login state
       localStorage.setItem('isAdmin', 'true');
       localStorage.setItem('adminEmail', user.email);
       localStorage.setItem('adminUID', user.uid);
       
-      if (rememberMe) {
-        localStorage.setItem('rememberMe', 'true');
-      }
-      
-      // Redirect to dashboard
       navigate('/dashboard');
-      
+       
     } catch (error) {
       console.error('❌ Login error:', error);
       let errorMessage = 'Login failed. Please try again.';
       
-      // Handle specific Firebase auth errors
       switch (error.code) {
         case 'auth/invalid-email':
           errorMessage = 'Invalid email address.';
@@ -55,8 +59,8 @@ const Login = () => {
         case 'auth/wrong-password':
           errorMessage = 'Incorrect password.';
           break;
-        case 'auth/too-many-requests':
-          errorMessage = 'Too many failed attempts. Please try again later.';
+        case 'auth/invalid-credential':
+          errorMessage = 'Invalid email or password.';
           break;
         default:
           errorMessage = error.message;
@@ -68,11 +72,20 @@ const Login = () => {
     }
   };
 
-  // Inline styles
   const styles = {
+    container: {
+      display: 'flex',
+      position:'fixed',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      minHeight: '100vh',
+      width: '100%',
+      padding: '30px 20px'
+    },
     header: {
       textAlign: 'center',
-      marginBottom: '50px',
+      marginBottom: '40px',
       width: '100%'
     },
     mainTitle: {
@@ -86,46 +99,57 @@ const Login = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      maxWidth: '1200px',
       width: '100%',
+      maxWidth: '1200px',
+      minHeight: '450px',
       backgroundColor: 'rgba(60, 126, 226, 0.15)',
       borderRadius: '30px',
-      padding: '80px 60px',
+      padding: '40px 40px',
       boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
-      border: '1px solid rgba(60, 126, 226, 0.3)'
+      border: '1px solid rgba(60, 126, 226, 0.3)',
+      margin: '0 auto'
     },
     formContainer: {
       backgroundColor: 'white',
       borderRadius: '20px',
-      padding: '60px 50px',
+      padding: '50px 50px',
       boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
       width: '100%',
-      minWidth: '550px',
-      maxWidth: '600px'
+      maxWidth: '650px',
+      margin: '0 auto'
+    },
+    formHeader: {
+      fontSize: '34px',
+      fontWeight: 'bold',
+      color: '#111827',
+      marginBottom: '30px',
+      textAlign: 'center'
     },
     form: {
       display: 'flex',
       flexDirection: 'column',
-      gap: '30px'
+      gap: '25px'
     },
     inputRow: {
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'space-between',
       gap: '30px',
-      width: '100%'
+      width: '100%',
+      marginBottom: '5px'
     },
     label: {
       fontSize: '17px',
       fontWeight: '600',
       color: '#374151',
-      width: '140px',
+      width: '160px',
       textAlign: 'left',
       flexShrink: 0
     },
     inputGroup: {
       flex: 1,
       display: 'flex',
-      minWidth: '350px'
+      minWidth: '380px'
     },
     input: {
       flex: 1,
@@ -143,33 +167,15 @@ const Login = () => {
       borderColor: '#3b82f6',
       boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)'
     },
-    options: {
-      display: 'flex',
-      alignItems: 'center',
-      marginTop: '15px',
-      marginLeft: '170px',
-      width: '350px'
-    },
-    checkboxContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px',
-      cursor: 'pointer'
-    },
-    checkbox: {
-      width: '20px',
-      height: '20px',
-      accentColor: '#2563eb'
-    },
     buttonContainer: {
       display: 'flex',
       justifyContent: 'flex-start',
-      marginTop: '20px',
-      marginLeft: '170px',
-      width: '350px'
+      marginTop: '15px',
+      width: '100%',
+      marginLeft: '190px'
     },
     button: {
-      width: '100%',
+      width: '380px',
       backgroundColor: '#3C7EE2',
       color: 'white',
       padding: '16px',
@@ -184,9 +190,9 @@ const Login = () => {
       textAlign: 'left',
       fontSize: '16px',
       color: '#6b7280',
-      marginTop: '25px',
-      marginLeft: '170px',
-      width: '350px'
+      marginTop: '15px',
+      marginLeft: '190px',
+      width: '380px'
     },
     link: {
       color: '#3C7EE2',
@@ -212,102 +218,95 @@ const Login = () => {
 
   return (
     <AuthLayout>
-      {/* Header outside the container */}
-      <div style={styles.header}>
-        <h1 style={styles.mainTitle}>MyPortfolioAdmin</h1>
-      </div>
+      <div style={styles.container}>
+        {/* Header at the top center */}
+        <div style={styles.header}>
+          <h1 style={styles.mainTitle}>MyPortfolioAdmin</h1>
+        </div>
 
-      {/* Main Content Container */}
-      <div style={styles.contentContainer}>
-        {/* Login Form in White Container */}
-        <div style={styles.formContainer}>
-          {/* Error Message */}
-          {error && (
-            <div style={styles.errorMessage}>
-              {error}
-            </div>
-          )}
+        {/* Main Content Container */}
+        <div style={styles.contentContainer}>
+          {/* Login Form in White Container */}
+          <div style={styles.formContainer}>
+            {/* Login Header inside the form container */}
+            <h2 style={styles.formHeader}>Login</h2>
 
-          <form onSubmit={handleSubmit} style={styles.form}>
-            {/* Email Input */}
-            <div style={styles.inputRow}>
-              <label style={styles.label}>Email</label>
-              <div style={styles.inputGroup}>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={styles.input}
-                  placeholder="your@email.com"
-                  required
-                  disabled={loading}
-                  onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
-                  onBlur={(e) => Object.assign(e.target.style, styles.input)}
-                />
+            {error && (
+              <div style={styles.errorMessage}>
+                {error}
               </div>
-            </div>
+            )}
 
-            {/* Password Input */}
-            <div style={styles.inputRow}>
-              <label style={styles.label}>Password</label>
-              <div style={styles.inputGroup}>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={styles.input}
-                  placeholder="••••••"
-                  required
-                  disabled={loading}
-                  onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
-                  onBlur={(e) => Object.assign(e.target.style, styles.input)}
-                />
+            <form onSubmit={handleSubmit} style={styles.form}>
+              <div style={styles.inputRow}>
+                <label style={styles.label}>Email</label>
+                <div style={styles.inputGroup}>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="your@email.com"
+                    required
+                    disabled={loading}
+                    onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
+                    onBlur={(e) => Object.assign(e.target.style, styles.input)}
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Options - Remember Me */}
-            <div style={styles.options}>
-              <label style={styles.checkboxContainer}>
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  style={styles.checkbox}
+              <div style={styles.inputRow}>
+                <label style={styles.label}>Password</label>
+                <div style={styles.inputGroup}>
+                  <input
+                    type="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="••••••"
+                    required
+                    disabled={loading}
+                    onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}
+                    onBlur={(e) => Object.assign(e.target.style, styles.input)}
+                  />
+                </div>
+              </div>
+
+              {/* Submit Button - Aligned with input fields */}
+              <div style={styles.buttonContainer}>
+                <button
+                  type="submit"
+                  style={{
+                    ...styles.button,
+                    opacity: loading ? 0.7 : 1,
+                    cursor: loading ? 'not-allowed' : 'pointer'
+                  }}
                   disabled={loading}
-                />
-                <span style={{ fontSize: '16px', color: '#374151' }}>Remember me</span>
-              </label>
-            </div>
+                  onMouseOver={(e) => !loading && (e.target.style.backgroundColor = '#2D6CD0')}
+                  onMouseOut={(e) => !loading && (e.target.style.backgroundColor = '#3C7EE2')}
+                >
+                  {loading ? 'LOGGING IN...' : 'LOGIN'}
+                </button>
+              </div>
 
-            {/* Submit Button - Aligned with input fields */}
-            <div style={styles.buttonContainer}>
-              <button
-                type="submit"
-                style={{
-                  ...styles.button,
-                  opacity: loading ? 0.7 : 1,
-                  cursor: loading ? 'not-allowed' : 'pointer'
-                }}
-                disabled={loading}
-                onMouseOver={(e) => !loading && (e.target.style.backgroundColor = '#2D6CD0')}
-                onMouseOut={(e) => !loading && (e.target.style.backgroundColor = '#3C7EE2')}
-              >
-                {loading ? 'SIGNING IN...' : 'SIGN IN'}
-              </button>
-            </div>
-
-            {/* Signup Link - Aligned with input fields */}
-            <div style={styles.signupLink}>
-              <Link 
-                to="/signup" 
-                style={styles.link}
-                onMouseOver={(e) => Object.assign(e.target.style, styles.linkHover)}
-                onMouseOut={(e) => Object.assign(e.target.style, styles.link)}
-              >
-                Don't have an account?
-              </Link>
-            </div>
-          </form>
+              {/* Signup Link - Aligned with button */}
+              <div style={styles.signupLink}>
+                <span style={{ color: '#6b7280' }}>
+                  Don't have an account?{' '}
+                </span>
+                <Link 
+                  to="/signup" 
+                  style={styles.link}
+                  onMouseOver={(e) => Object.assign(e.target.style, styles.linkHover)}
+                  onMouseOut={(e) => Object.assign(e.target.style, styles.link)}
+                >
+                  Sign up
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </AuthLayout>
